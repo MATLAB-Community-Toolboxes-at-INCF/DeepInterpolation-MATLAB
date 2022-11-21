@@ -14,7 +14,7 @@ To try out training your own DeepInterpolation network, we recommend to start wi
 
 # Example Inference
 
-To try out training your own DeepInterpolation network, we recommend to start with:
+To try out inference with your own DeepInterpolation network, we recommend to start with:
 * [tiny_ephys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/livescripts/examples/tiny_ephys_inference.mlx) for ephys data from a Neuropixels probe
 * [tiny_ophys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/livescripts/examples/tiny_ophys_inference.mlx) for 2-photon ophys data  
 
