@@ -10,15 +10,17 @@ Figure 1 - Schematic introducing the principles of DeepInterpolation. A. An inte
 
 # Example training
 
-To try out training your own DeepInterpolation network, we recommend to start with this file: [tiny_ephys_training.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/livescripts/examples/tiny_ephys_training.mlx)
+To try out training your own DeepInterpolation network, we recommend to start with: 
+* [tiny_ephys_training.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/tiny_ephys_training.mlx) for ephys data from a Neuropixels probe
+* [ophys_training_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/ophys_training_inference.mlx) for 2-photon ophys data 
 
 # Example Inference
 
 To try out inference with your own DeepInterpolation network, we recommend to start with:
-* [tiny_ephys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/livescripts/examples/tiny_ephys_inference.mlx) for ephys data from a Neuropixels probe
-* [tiny_ophys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/livescripts/examples/tiny_ophys_inference.mlx) for 2-photon ophys data  
+* [tiny_ephys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/tiny_ephys_inference.mlx) for ephys data from a Neuropixels probe
+* [tiny_ophys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/tiny_ophys_inference.mlx) for 2-photon ophys data  
 
-Raw pre-trained models are available as separate h5 file on Dropbox.
+Raw pre-trained models are available as separate h5 files on Dropbox.
 
 Neuropixel DeepInterpolation network:
 
