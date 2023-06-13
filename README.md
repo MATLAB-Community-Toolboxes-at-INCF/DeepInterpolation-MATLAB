@@ -2,10 +2,21 @@
 DeepInterpolation with MATLAB is a MATLAB implementation of the DeepInterpolation general-purpose algorithm used to denoise data by removing independent noise. 
 For the implementation, we have used the ideas of the [deepinterpolation Python library](https://github.com/AllenInstitute/deepinterpolation) that can be found on GitHub, under the Allen Institute Software License.
 
-This repository is currently meant to provide livescripts to illustrate the training and inference pipelines. 
+This repository is currently meant to provide live scripts to illustrate the training and inference pipelines. 
 Note that training does not require ground truth. 
 
 The associated bioRxiv publication can be accessed [here](https://www.biorxiv.org/content/10.1101/2020.10.15.341602v1).
+
+# Example live scripts
+We advise users to first try one of the tiny inference example workflows that are found in the example directory. The corresponding live scripts can be opened by clicking either 
+* [tiny_ephys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/tiny_ephys_inference.mlx) for electrical-physiology data from a Neuropixels probe;
+* [tiny_ophys_inference.mlx](https://github.com/INCF/DeepInterpolation-MATLAB/blob/main/examples/tiny_ophys_inference.mlx) for 2-photon optical-physiology data.
+
+The complete live script can be run by clicking the 'Run' button on top of the live editor. As a deep-interpolation folder, you select the directory in which the folders 'examples', 'network_layers', and 'sample_data' are found. It could be well possible you need to install a support package using the Add-on Explorer. This should be easy by clicking the link in the corresponding error message.
+
+It is also possible to run it section by section by clicking the 'Run section' button. Make sure you wait until the current section is finished before you run the next section. The script is still running when you see the loading symbol being active on the left top of the script. Any errors will be marked by a red exclamation mark at the same location.
+
+Some numbers can be adapted manually using sliders (channel number in the ephys example, firstslice in the ophys example).
 
 # Example training
 
