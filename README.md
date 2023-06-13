@@ -1,16 +1,11 @@
 # DeepInterpolation with MATLAB
-DeepInterpolation with MATLAB is a MATLAB implementation of the DeepInterpolation general-purpose algorithm used to denoise data by removing independent noise. Importantly training does NOT require ground truth. This repository is currently meant to provide livescripts to illustrate the training and inference pipelines. 
+DeepInterpolation with MATLAB is a MATLAB implementation of the DeepInterpolation general-purpose algorithm used to denoise data by removing independent noise. 
+For the implementation, we have used the ideas of the [deepinterpolation Python library](https://github.com/AllenInstitute/deepinterpolation) that can be found on GitHub, under the Allen Institute Software License.
+
+This repository is currently meant to provide livescripts to illustrate the training and inference pipelines. 
+Note that training does not require ground truth. 
 
 The associated bioRxiv publication can be accessed [here](https://www.biorxiv.org/content/10.1101/2020.10.15.341602v1).
-
-# Principle of DeepInterpolation
-![principle](https://user-images.githubusercontent.com/83267915/203020071-53836bfe-5303-4587-ad1c-87595af08689.png)
-
-Figure 1 - Schematic introducing the principles of DeepInterpolation. 
-
-A. An interpolation model is trained to predict a noisy block from other blocks with independent noise. The loss is the difference between the predicted data and a new noisy block. 
-
-B. The interpolation model is used to create a noiseless version of the input data (Lecoq et al., 2020).
 
 # Example training
 
