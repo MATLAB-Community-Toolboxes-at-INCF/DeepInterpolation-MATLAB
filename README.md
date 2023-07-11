@@ -10,7 +10,7 @@ Get started with one of the example inference workflows. You can individually vi
 | Nickname| Trained Model|  Sample data  | View | Run
 | --- | --- | --- | --- | --- |
 | "Ephys" (electrophysiology) | [model](sample_data/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5)  | [sample data](sample_data/ephys_tiny_continuous.dat2) | [:eyes:](examples/tiny_ephys_inference.mlx) | :arrow_forward:
-| "Ophys" (optical physiology) | [model](https://www.dropbox.com/sh/vwxf1uq2j60uj9o/AAC0sZWahCJFBRARoYsw8Nnra/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5?dl=0)  (Dropbox, 120 MB) | [sample data](examples/tiny_ophys_inference.mlx)   | [:eyes:](examples/tiny_ephys_inference.mlx) | :arrow_forward:
+| "Ophys" (optical physiology) | [model](https://www.dropbox.com/sh/vwxf1uq2j60uj9o/AAC0sZWahCJFBRARoYsw8Nnra/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5?dl=0)  (Dropbox, 120 MB) | [sample data](sample_data/ophys_tiny_761605196.tif)   | [:eyes:](examples/tiny_ophys_inference.mlx) | :arrow_forward:
 
 
 #### Requirements
