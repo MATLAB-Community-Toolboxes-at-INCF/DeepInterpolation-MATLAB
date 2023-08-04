@@ -1,1 +1,1 @@
-This folder contains the sample data required for running the Demo codes.
+This folder contains the sample data required for running the examples.
