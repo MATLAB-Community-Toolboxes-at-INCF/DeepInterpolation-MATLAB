@@ -24,8 +24,7 @@ Try out training your own DeepInterpolation network. You can individually view (
 | Nickname  | Model |  Dataset | View | Run
 |---|---|---|---|---|
 | "Ephys" (electrophysiology) | [model](sample_data/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5) | [dataset](sample_data/ephys_tiny_continuous.dat2) | [:eyes:](examples/tiny_ephys_training.mlx) | :arrow_forward: |
-| "Ophys" (optical physiology) | [model](sample_data/2021_07_31_09_49_38_095550_unet_1024_search_mean_squared_error_pre_30_post_30_feat_32_power_1_depth_4_unet_True-0125-0.5732.h5) | [dataset](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_501254258.h5) (AWS, 52 GB) | [:eyes:](examples/ophys_training_inference.mlx) | :arrow_forward: |
-
+| "Ophys" (optical physiology) | [model](sample_data/2021_07_31_09_49_38_095550_unet_1024_search_mean_squared_error_pre_30_post_30_feat_32_power_1_depth_4_unet_True-0125-0.5732.h5) | [dataset](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_496908818.h5) (AWS, 55.6 GB) | [:eyes:](examples/ophys_training_inference.mlx) | :arrow_forward: |
 
 
 ### Support
