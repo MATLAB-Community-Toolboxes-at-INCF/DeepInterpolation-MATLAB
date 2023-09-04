@@ -1,4 +1,4 @@
-[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=README.mlx)
+[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=gettingStarted.mlx)
 # DeepInterpolation with MATLAB
 A MATLAB implementation of the DeepInterpolation principle
 ### About DeepInterpolation
@@ -6,7 +6,7 @@ DeepInterpolation is a general-purpose algorithm used to denoise data by removin
 The principle of DeepInterpolation has been [published](https://www.nature.com/articles/s41592-021-01285-2) in the Nature Methods journal, with applications to systems neuroscience data.
 
 ### Getting started
-Get oriented and get started using [MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=README.mlx). This will orient you to several live script examples available to guide new users.
+Get oriented and get started using [MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=gettingStarted.mlx). This will orient you to several live script examples available to guide new users.
 
 You can also try one of the example inference workflows. You can individually view (:eyes:) or run (:arrow_forward:) these examples on MATLAB Online:
 
@@ -27,6 +27,7 @@ Try out training your own DeepInterpolation network. You can individually view (
 |---|---|---|---|---|
 | "Ephys" (electrophysiology) | [model](sample_data/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5) | [dataset](sample_data/ephys_tiny_continuous.dat2) | [:eyes:](examples/tiny_ephys_training.mlx) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_training.mlx) |
 | "Ophys" (optical physiology) | [model](sample_data/2021_07_31_09_49_38_095550_unet_1024_search_mean_squared_error_pre_30_post_30_feat_32_power_1_depth_4_unet_True-0125-0.5732.h5) | [dataset](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_496908818.h5) (AWS, 55.6 GB) | [:eyes:](examples/ophys_training_inference.mlx) | (\*) |
+
 <sub>(\*) This data-intensive example is recommended for use on a local machine, not for MATLAB online.</sub>
 
 
