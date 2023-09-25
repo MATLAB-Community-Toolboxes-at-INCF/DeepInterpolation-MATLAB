@@ -11,8 +11,10 @@
 % Dr. Thomas Künzel, The MathWorks, 2023
 % tkuenzel@mathworks.com
 
-TESTSTACKFULLFILE = fullfile(".","data","ophys_tiny_761605196.tif");
-WRONGSIZETESTSTACKFULLFILE = fullfile(".","data","ophys_tiny_761605196_wrongsize.tif");
+base_folder = setup;
+
+TESTSTACKFULLFILE = fullfile(base_folder,"sample_data","ophys_tiny_761605196.tif");
+WRONGSIZETESTSTACKFULLFILE = fullfile(base_folder,"sample_data","ophys_tiny_761605196_wrongsize.tif");
 
 %% Test 01: Check if  matlab.io.Datastore is superclass.
 % A deepinterpolation datastore inherits from abstract Datastore
