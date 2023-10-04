@@ -21,7 +21,9 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
 
     properties
         fileName string
-        autoResize = false;
+        autoResize logical
+        numberOfFlankingFrames int32
+        outputFrameSize int32
         frameCount double
         dsSetCount double
         setsAvailable double
@@ -32,21 +34,47 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
     end
 
     methods % begin methods section
-        function myds = DeepInterpolationDataStore(inArg, doAutoResize)
-            assert(isfile(inArg));
-            if nargin == 2
-                myds.autoResize = logical(doAutoResize);
+        function myds = DeepInterpolationDataStore(filePath, options)
+            arguments
+                filePath
+                options = struct();
             end
-            myds.fileName = inArg;
+            if isfield(options, 'doAutoResize')
+                myds.autoResize = logical(options.doAutoResize);
+            else % default
+                myds.autoResize = false;
+            end
+            if isfield(options, 'numberOfFlankingFrames')
+                assert(options.numberOfFlankingFrames > 0)
+                myds.numberOfFlankingFrames = options.numberOfFlankingFrames;
+            else % default
+                myds.numberOfFlankingFrames = 30;
+            end
+            if isfield(options, 'outputFrameSize')
+                if not (myds.autoResize)
+                    warning('Specified an output frame size, but auto-resize is turned off.')
+                end
+                frameSize = options.outputFrameSize;
+                if not (isnumeric(frameSize) && isequal(size(frameSize), [1, 2]) && all(frameSize >= 0))
+                    error('outputFrameSize should be an array with dimension 1x2 and non-negative values.');
+                end
+                myds.outputFrameSize = options.outputFrameSize;
+            else % default
+                myds.outputFrameSize = [512, 512];
+            end
+            assert(isfile(filePath));
+            myds.fileName = filePath;
             fileInfo = imfinfo(myds.fileName);
             assert(strcmp(fileInfo(1).Format,'tif'), "Must be tiff format");
             if ~myds.autoResize
-                assert((fileInfo(1).Width == 512) && (fileInfo(1).Height == 512),...
-                    "Stack must be 512x512xN");
+                assert((fileInfo(1).Width == myds.outputFrameSize(1)) ...
+                    && (fileInfo(1).Height == myds.outputFrameSize(2)),...
+                    "Actual frame size is not equal to specified outputFrameSize");
             end
-            assert(numel(fileInfo) > 62, "Not enough frames in stack for DeepInterpolation");
+            framePerSetCount = options.numberOfFlankingFrames*2 + 3;
+            assert(numel(fileInfo) >= framePerSetCount, "Not enough frames in stack for DeepInterpolation");
             myds.frameCount = numel(fileInfo);
-            myds.dsSetCount = myds.frameCount - 62;
+            myds.dsSetCount = myds.frameCount - framePerSetCount + 1;
             myds.allSetFrameStartIndices = 1:myds.dsSetCount;
             reset(myds);
         end
@@ -61,25 +89,31 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             assert(hasdata(myds), "No more data to read");           
             rawRefFrame = imread(myds.fileName,myds.currentFrameIndex);
             if myds.autoResize
-                rawRefFrame = imresize(rawRefFrame,[512 512]);
+                rawRefFrame = imresize(rawRefFrame,myds.outputFrameSize);
             end
             refFrame = single(rawRefFrame);
-            flankingFrames = single(ones(512,512,60));%this is fixed due to the network
+            flankingFrames = single( ...
+                ones(myds.outputFrameSize(1), ...
+                myds.outputFrameSize(2), ...
+                myds.numberOfFlankingFrames) ...
+                );
             framecount = 1;
-            for leftFrame = 0:29
+            for leftFrame = 0:myds.numberOfFlankingFrames - 1
                 rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+leftFrame);
                 if myds.autoResize
-                    rawThisFrame = imresize(rawThisFrame,[512 512]);
+                    rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
                 end
                 thisFrame = single(rawThisFrame);
                 flankingFrames(:,:,framecount) = thisFrame;
                 framecount = framecount + 1;
             end
-            %frame Start+30 and Start+32 are left out / Start+31 is centerframe
-            for rightFrame = 33:62
+            %frame myds.numberOfFlankingFrames + 1 is center frame. One
+            %frame before and one after is left out.
+            startRightFrame = myds.numberOfFlankingFrames + 3;
+            for rightFrame = startRightFrame:startRightFrame + myds.numberOfFlankingFrames - 1
                 rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+rightFrame);
                 if myds.autoResize
-                    rawThisFrame = imresize(rawThisFrame,[512 512]);
+                    rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
                 end
                 thisFrame = single(rawThisFrame);
                 flankingFrames(:,:,framecount) = thisFrame;
@@ -91,7 +125,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             myds.setsAvailable = myds.setsAvailable - 1;
             if myds.setsAvailable > 0
                 myds.setFramesStartIndex = myds.allSetFrameStartIndices(myds.currentSet);
-                myds.currentFrameIndex = myds.setFramesStartIndex + 31;
+                myds.currentFrameIndex = myds.setFramesStartIndex + myds.numberOfFlankingFrames + 1;
             else
                 myds.setFramesStartIndex = nan;
                 myds.currentFrameIndex = nan;
@@ -103,7 +137,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             myds.setsAvailable = myds.dsSetCount;
             myds.currentSet = 1;
             myds.setFramesStartIndex = myds.allSetFrameStartIndices(myds.currentSet);
-            myds.currentFrameIndex = myds.setFramesStartIndex + 31;
+            myds.currentFrameIndex = myds.setFramesStartIndex + myds.numberOfFlankingFrames + 1;
         end%
 
         function shmyds = shuffle(myds)
