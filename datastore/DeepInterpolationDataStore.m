@@ -55,11 +55,11 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                 if not (myds.doAutoResize)
                     warning('Specified an output frame size, but auto-resize is turned off.')
                 end
-                frameSize = options.outputFrameSize;
-                if not (isnumeric(frameSize) && isequal(size(frameSize), [1, 2]) && all(frameSize >= 0))
+                outputFrameSize = options.outputFrameSize;
+                if not (isnumeric(outputFrameSize) && isequal(size(outputFrameSize), [1, 2]) && all(outputFrameSize >= 0))
                     error('outputFrameSize should be an array with dimension 1x2 and non-negative values.');
                 end
-                myds.outputFrameSize = options.outputFrameSize;
+                myds.outputFrameSize = outputFrameSize;
             else % default
                 myds.outputFrameSize = [512, 512];
             end
@@ -72,7 +72,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                     && (fileInfo(1).Height == myds.outputFrameSize(2)),...
                     "Actual frame size is not equal to specified outputFrameSize");
             end
-            framePerSetCount = options.numberOfFlankingFrames + 3;
+            framePerSetCount = myds.numberOfFlankingFrames + 3;
             assert(numel(fileInfo) >= framePerSetCount, "Not enough frames in stack for DeepInterpolation");
             myds.frameCount = numel(fileInfo);
             myds.dsSetCount = myds.frameCount - framePerSetCount + 1;
