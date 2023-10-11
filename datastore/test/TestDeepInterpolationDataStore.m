@@ -312,6 +312,7 @@ assert(info == "set=1/centerframe=61");
 dids = DeepInterpolationDataStore(TESTSTACKFULLFILE);
 subds = partition(dids,2,2);
 idx = 1;
+clear p
 while(hasdata(subds))
   p(idx) = progress(subds);
   read(subds);
@@ -339,6 +340,7 @@ assert(info == "set=1/centerframe=36");
 dids = DeepInterpolationDataStore(TESTSTACKFULLFILE);
 subds = subset(dids,5:10);
 idx = 1;
+clear p
 while(hasdata(subds))
   p(idx) = progress(subds);
   read(subds);
@@ -354,11 +356,12 @@ assert(all(diff(p) > 0), "progress must be monotonically increasing");
 try
     dids = DeepInterpolationDataStore(WRONGSIZETESTSTACKFULLFILE); %#ok<NASGU>
 catch EM
-    assert(strcmp(EM.message,'Stack must be 512x512xN'),"Fail on wrong tiff size");
+    assert(strcmp(EM.message,'Actual frame size is not equal to specified outputFrameSize'),"Fail on wrong tiff size");
 end
 
 %% Test 72: Read data with automatic resize
-dids = DeepInterpolationDataStore(WRONGSIZETESTSTACKFULLFILE, true);
+options.doAutoResize = true;
+dids = DeepInterpolationDataStore(WRONGSIZETESTSTACKFULLFILE, options);
 t = read(dids);
 assert(iscell(t));
 assert(numel(t) == 2);
