@@ -3,18 +3,18 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                                       matlab.io.datastore.Shuffleable
     %DEEPINTERPOLATIONDATASTORE - custom datastore for DeepInterpolation-MATLAB
     %
-    % This custom datastore provides 60 flanking frames [512x512x60] and the center
-    % frame [512x512] upon one read.
+    % This custom datastore provides flanking frames and the center frame 
+    % upon one read.
     %
-    % dids = DeepInterpolationDataStore(pathToTiffFile, true);
+    % dids = DeepInterpolationDataStore(pathToTiffFile, options);
     %
-    % Input must be full path to a grayscale, single channel tiff stack of >62 frames
-    % in order to work (this is according to the function of the DeepInterpolation
-    % network).
+    % Input must be full path to a grayscale, single channel tiff stack of 
+    % >'flankingFrames + 2' frames in order to work (this is according to
+    % the function of the DeepInterpolation network).
     %
-    % If the image frame dimensions differ from the network input size of 512x512,
-    % the second input argument (false/true) controls whether the frames will be
-    % automatically resized to 512x512 before they are returned.
+    % If the image frame dimensions differ from the network input size
+    % the doAutoResize option controls whether the frames will be
+    % automatically resized to outputFrameSize before they are returned.
     %
     % Dr. Thomas Künzel, The MathWorks, 2023
     % tkuenzel@mathworks.com
