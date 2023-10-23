@@ -21,7 +21,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
 
     properties
         fileName string
-        autoResize logical
+        doAutoResize logical
         numberOfFlankingFrames int32
         outputFrameSize int32
         frameCount double
@@ -40,9 +40,9 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                 options = struct();
             end
             if isfield(options, 'doAutoResize')
-                myds.autoResize = logical(options.doAutoResize);
+                myds.doAutoResize = logical(options.doAutoResize);
             else % default
-                myds.autoResize = false;
+                myds.doAutoResize = false;
             end
             if isfield(options, 'numberOfFlankingFrames')
                 assert(options.numberOfFlankingFrames > 0)
@@ -51,7 +51,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                 myds.numberOfFlankingFrames = 30;
             end
             if isfield(options, 'outputFrameSize')
-                if not (myds.autoResize)
+                if not (myds.doAutoResize)
                     warning('Specified an output frame size, but auto-resize is turned off.')
                 end
                 frameSize = options.outputFrameSize;
@@ -66,7 +66,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             myds.fileName = filePath;
             fileInfo = imfinfo(myds.fileName);
             assert(strcmp(fileInfo(1).Format,'tif'), "Must be tiff format");
-            if ~myds.autoResize
+            if ~myds.doAutoResize
                 assert((fileInfo(1).Width == myds.outputFrameSize(1)) ...
                     && (fileInfo(1).Height == myds.outputFrameSize(2)),...
                     "Actual frame size is not equal to specified outputFrameSize");
@@ -88,7 +88,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             % Read data and information about the extracted data.
             assert(hasdata(myds), "No more data to read");           
             rawRefFrame = imread(myds.fileName,myds.currentFrameIndex);
-            if myds.autoResize
+            if myds.doAutoResize
                 rawRefFrame = imresize(rawRefFrame,myds.outputFrameSize);
             end
             refFrame = single(rawRefFrame);
@@ -100,7 +100,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             framecount = 1;
             for leftFrame = 0:myds.numberOfFlankingFrames - 1
                 rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+leftFrame);
-                if myds.autoResize
+                if myds.doAutoResize
                     rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
                 end
                 thisFrame = single(rawThisFrame);
@@ -112,7 +112,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             startRightFrame = myds.numberOfFlankingFrames + 3;
             for rightFrame = startRightFrame:startRightFrame + myds.numberOfFlankingFrames - 1
                 rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+rightFrame);
-                if myds.autoResize
+                if myds.doAutoResize
                     rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
                 end
                 thisFrame = single(rawThisFrame);
