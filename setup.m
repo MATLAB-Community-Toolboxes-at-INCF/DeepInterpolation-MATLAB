@@ -5,4 +5,5 @@ function base_folder = setup()
     addpath(fullfile(base_folder, "network_layers"))
     addpath(fullfile(base_folder, "sample_data"))
     addpath(fullfile(base_folder, "examples"))
+    addpath(fullfile(base_folder, "datastore"))
 end
