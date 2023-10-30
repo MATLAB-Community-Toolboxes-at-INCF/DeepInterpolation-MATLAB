@@ -31,6 +31,13 @@ Try out training your own DeepInterpolation network. You can individually view (
 
 <sub>(\*) This data-intensive example is recommended for use on a local machine, not for MATLAB online.</sub>
 
+#### Custom Datastore for DeepInterpolation
+For large datasets that are too large to load entirely into memory, the custom datastore offers a solution. By initializing the datastore with a dataset's path, users can sequentially access both flanking frames and their respective center frames. This allows for easy training and inference.
+
+For a detailed introduction and a practical workflow, see the customdatastore_example.
+
+#### Using DANDI Datasets
+DeepInterpolation can also easily work with datasets stored on the DANDI archive. Instructions for downloading files from DANDI and subsequently training and inferring from those NWB files are available in dandi_example.
 
 ### Support
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of adding issues or submitting pull requests.
