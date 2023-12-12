@@ -36,8 +36,5 @@ For large datasets that are too large to load entirely into memory, the custom d
 
 For a detailed introduction and a practical workflow, see the customdatastore_example.
 
-#### Using DANDI Datasets
-DeepInterpolation can also easily work with datasets stored on the DANDI archive. Instructions for downloading files from DANDI and subsequently training and inferring from those NWB files are available in dandi_example.
-
 ### Support
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of adding issues or submitting pull requests.
