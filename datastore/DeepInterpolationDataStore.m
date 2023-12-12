@@ -31,6 +31,8 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
         setFramesStartIndex double
         currentFrameIndex double
         allSetFrameStartIndices double
+        datasetType string
+        NwbDatasetPath string
     end
 
     methods % begin methods section
@@ -39,6 +41,8 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                 filePath
                 options = struct();
             end
+            assert(isfile(filePath));
+            myds.fileName = filePath;
             if isfield(options, 'doAutoResize')
                 myds.doAutoResize = logical(options.doAutoResize);
             else % default
@@ -63,22 +67,41 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             else % default
                 myds.outputFrameSize = [512, 512];
             end
-            assert(isfile(filePath));
-            myds.fileName = filePath;
-            fileInfo = imfinfo(myds.fileName);
-            assert(strcmp(fileInfo(1).Format,'tif'), "Must be tiff format");
+            if isfield(options, 'datasetType')
+                if ~ismember(options.datasetType, {'nwb', 'tiff'})
+                    error('The dataset type is either "nwb" or "tiff".');
+                end
+                myds.datasetType = options.datasetType;
+            else
+                myds.datasetType = 'tiff';
+            end
+            if strcmp(myds.datasetType, 'nwb')
+                if ~isfield(options, 'NwbDatasetPath')
+                    myds.NwbDatasetPath = '/acquisition/motion_corrected_stack/data';
+                else
+                    myds.NwbDatasetPath = options.NwbDatasetPath;
+                end
+                try
+                    h5info(myds.fileName, myds.NwbDatasetPath);
+                catch ME
+                    error('Cannot read the selected path from the nwb file: %s', ME.message);
+                end
+            end
+            dimensions = getFileFrameDimensions(myds);
             if ~myds.doAutoResize
-                assert((fileInfo(1).Width == myds.outputFrameSize(1)) ...
-                    && (fileInfo(1).Height == myds.outputFrameSize(2)),...
+                assert((dimensions.Width == myds.outputFrameSize(1)) ...
+                    && (dimensions.Height == myds.outputFrameSize(2)),...
                     "Actual frame size is not equal to specified outputFrameSize");
             end
             framePerSetCount = myds.numberOfFlankingFrames + 3;
-            assert(numel(fileInfo) >= framePerSetCount, "Not enough frames in stack for DeepInterpolation");
-            myds.frameCount = numel(fileInfo);
+            assert(getNumberOfFrames(myds) >= framePerSetCount, "Not enough frames in stack for DeepInterpolation");
+            myds.frameCount = getNumberOfFrames(myds);
             myds.dsSetCount = myds.frameCount - framePerSetCount + 1;
             myds.allSetFrameStartIndices = 1:myds.dsSetCount;
             reset(myds);
         end
+
+
 
         function tf = hasdata(myds)
             % Return true if more data is available.
@@ -88,11 +111,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
         function [data,info] = read(myds)
             % Read data and information about the extracted data.
             assert(hasdata(myds), "No more data to read");
-            rawRefFrame = imread(myds.fileName,myds.currentFrameIndex);
-            if myds.doAutoResize
-                rawRefFrame = imresize(rawRefFrame,myds.outputFrameSize);
-            end
-            refFrame = single(rawRefFrame);
+            refFrame = getSingleFrame(myds, myds.currentFrameIndex);
             flankingFrames = single( ...
                 ones(myds.outputFrameSize(1), ...
                 myds.outputFrameSize(2), ...
@@ -100,11 +119,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
                 );
             framecount = 1;
             for leftFrame = 0:(myds.numberOfFlankingFrames/2) - 1
-                rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+leftFrame);
-                if myds.doAutoResize
-                    rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
-                end
-                thisFrame = single(rawThisFrame);
+                thisFrame = getSingleFrame(myds, myds.setFramesStartIndex+leftFrame);
                 flankingFrames(:,:,framecount) = thisFrame;
                 framecount = framecount + 1;
             end
@@ -112,11 +127,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
             %frame before and one after is left out.
             startRightFrame = myds.numberOfFlankingFrames/2 + 3;
             for rightFrame = startRightFrame:startRightFrame + myds.numberOfFlankingFrames/2 - 1
-                rawThisFrame = imread(myds.fileName,myds.setFramesStartIndex+rightFrame);
-                if myds.doAutoResize
-                    rawThisFrame = imresize(rawThisFrame,myds.outputFrameSize);
-                end
-                thisFrame = single(rawThisFrame);
+                thisFrame = getSingleFrame(myds, myds.setFramesStartIndex+rightFrame);
                 flankingFrames(:,:,framecount) = thisFrame;
                 framecount = framecount + 1;
             end
@@ -176,6 +187,74 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
         function n = maxpartitions(myds)
             n = myds.dsSetCount;
         end
+
+        function rawFrame = readFrameFromTiff(myds, index)
+            rawFrame = imread(myds.fileName, index);
+        end
+
+        function rawFrame = readFrameFromNwb(myds, index)
+            dimensions = getNwbFrameDimensions(myds);
+            index = double(index);
+            rawFrame = h5read(myds.fileName, myds.NwbDatasetPath, [1, 1, index], [dimensions.Width, dimensions.Height, 1]);
+        end
+
+        function frame = getSingleFrame(myds, index)
+            if strcmp(myds.datasetType, 'tiff')
+                rawFrame = readFrameFromTiff(myds, index);
+            elseif strcmp(myds.datasetType, 'nwb')
+                rawFrame = readFrameFromNwb(myds, index);
+            else
+               error('Unsupported dataset type.');
+            end
+            if myds.doAutoResize
+                rawFrame = imresize(rawFrame, myds.outputFrameSize);
+            end
+            frame = single(rawFrame);
+        end
+
+        function dimensions = getTiffFrameDimensions(myds)
+            fileInfo = imfinfo(myds.fileName);
+            dimensions.Width = fileInfo(1).Width;
+            dimensions.Height = fileInfo(1).Height;
+        end
+
+        function dimensions = getNwbFrameDimensions(myds)
+            datasetInfo = h5info(myds.fileName, myds.NwbDatasetPath);
+            datasetSize = datasetInfo.Dataspace.Size;
+            dimensions.Width = datasetSize(1);
+            dimensions.Height = datasetSize(2);
+        end
+
+        function dimensions = getFileFrameDimensions(myds)
+            if strcmp(myds.datasetType, 'tiff')
+                dimensions = getTiffFrameDimensions(myds);
+            elseif strcmp(myds.datasetType, 'nwb')
+                dimensions = getNwbFrameDimensions(myds);
+            else
+               error('Unsupported dataset type.');
+            end
+        end
+
+        function numFrames = getTiffNumberOfFrames(myds)
+            fileInfo = imfinfo(myds.fileName);
+            numFrames = numel(fileInfo);
+        end
+
+        function numFrames = getNwbNumberOfFrames(myds)
+            datasetInfo = h5info(myds.fileName, myds.NwbDatasetPath);
+            numFrames = datasetInfo.Dataspace.Size(3);
+        end
+
+        function numFrames = getNumberOfFrames(myds)
+            if strcmp(myds.datasetType, 'tiff')
+                numFrames = getTiffNumberOfFrames(myds);
+            elseif strcmp(myds.datasetType, 'nwb')
+                numFrames = getNwbNumberOfFrames(myds);
+            else
+               error('Unsupported dataset type.');
+            end
+        end
+
     end
 
 end
