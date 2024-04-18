@@ -7,7 +7,7 @@ DeepInterpolation is a general-purpose algorithm used to denoise data by removin
 The principle of DeepInterpolation has been [published](https://www.nature.com/articles/s41592-021-01285-2) in the Nature Methods journal, with applications to systems neuroscience data.
 
 ### Getting started
-Get started with inference examples using small datasets. You can individually view (:eyes:) or run (:arrow_forward:) each on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html):
+Get started with inference examples using small datasets. You can individually view :eyes: or run :arrow_forward: each on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html):
 
 | | Nickname| Trained Model|  Sample data  | View | Run
 | ---  | --- | --- | --- | --- | --- |
