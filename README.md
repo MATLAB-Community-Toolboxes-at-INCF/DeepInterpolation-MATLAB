@@ -43,3 +43,9 @@ For a detailed introduction and a practical workflow, see the customdatastore_ex
 
 ### Support
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of adding issues or submitting pull requests.
+
+### Uses other open source resources:
+
+We use [progressbar](https://www.mathworks.com/matlabcentral/fileexchange/6922-progressbar) and mimic some functions from [Brain Observatory Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/90900-brain-observatory-toolbox).
+
+
