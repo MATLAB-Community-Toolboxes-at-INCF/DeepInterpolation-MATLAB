@@ -9,7 +9,9 @@ function fileName = sampleFile(sampleFileName)
 % will return an error.
 %
 
-fileName = fullfile(deepinterp.toolboxdir,'sampleData',sampleFileName);
+base_folder = deepinterp.toolboxdir;
+
+fileName = fullfile(base_folder,'sampleData',sampleFileName);
 
 if ~isfile(fileName),
 
