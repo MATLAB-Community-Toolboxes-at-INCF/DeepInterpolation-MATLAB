@@ -16,7 +16,7 @@ fileName = fullfile(base_folder,'sampleData',sampleFileName);
 if ~isfile(fileName),
 
 	switch sampleFileName,
-		case '2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5',
+		case '2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5', 
 
 			FileURL = 'https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5';
     			destinationFile = fullfile(base_folder,'sampleData',sampleFileName);
