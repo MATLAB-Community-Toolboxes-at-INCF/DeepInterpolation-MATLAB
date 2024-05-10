@@ -55,7 +55,7 @@ classdef ImageTimeSeries < deepinterp.Net
 
 				superOptions = rmfield(options,{'N','M','Npre','Npost'});
 				superInputs = cat(2,{command},...
-					deepinterp.struct2namevaluepair(superOptions));
+					deepinterp.internal.struct2namevaluepair(superOptions));
 				obj = obj@deepinterp.Net(superInputs{:});
 				obj.Npre = options.Npre;
 				obj.Npost = options.Npost;
@@ -115,12 +115,12 @@ classdef ImageTimeSeries < deepinterp.Net
 				output = input;
 				offsets = [-obj.Npre:-1 1:obj.Npost];
 				if options.progbar,
-					deepinterp.progressbar();
+					deepinterp.internal.progressbar();
 				end;
 				totalWork = size(input,3)-(obj.Npost+obj.Npre);
 				for t = obj.Npre+1 : size(input,3) - obj.Npost,
 					if options.progbar,
-						deepinterp.progressbar((t-(obj.Npre+1))/totalWork);
+						deepinterp.internal.progressbar((t-(obj.Npre+1))/totalWork);
 					end;
 					output(:,:,t) = predict(obj.network,input(:,:,offsets+t));
 				end;

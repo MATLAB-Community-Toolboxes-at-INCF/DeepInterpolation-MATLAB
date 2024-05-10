@@ -34,7 +34,7 @@ classdef Net
 
 				switch (command),
 					case 'KerasFile',
-						obj.network=deepinterp.importKerasMAE(options.file);
+						obj.network=deepinterp.internal.importKerasMAE(options.file);
 					case 'New',
 						% nothing to do
 					otherwise,
