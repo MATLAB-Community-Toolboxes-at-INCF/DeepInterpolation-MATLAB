@@ -1,7 +1,7 @@
-function toolboxFolderPath = toolboxdir()
-% TOOLBOXDIR - return the toolbox path for DeepInterpolation Toolbox
+function toolboxFolderPath = toolboxpath()
+% TOOLBOXPATH - return the toolbox path for DeepInterpolation Toolbox
 %
-% TOOLBOXFOLDERPATH = TOOLBOXDIR()
+% TOOLBOXFOLDERPATH = TOOLBOXPATH()
 %
 % Return the toolbox path.  (Imitated from Brain Observatory Toolbox.)
 %

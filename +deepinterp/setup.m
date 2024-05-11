@@ -6,7 +6,7 @@ function setup()
 % Adds DeepInterpolation Toolobx folders to the MATLAB path.
 %
 
-tbd = deepinterp.toolboxdir();
+tbd = deepinterp.toolboxpath();
 
 addpath(tbd);
 addpath(fullfile(tbd, "network_layers"))
