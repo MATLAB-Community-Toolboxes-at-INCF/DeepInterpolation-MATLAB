@@ -11,9 +11,10 @@ function net = importKerasMAE(kerasFile)
 importednet = importKerasLayers(kerasFile,'ImportWeights',true);
 
 placeholders = findPlaceholderLayers(importednet);
+if ~isempty(placeholders),
+	importednet = replaceLayer(importednet, placeholders.Name , ...
+		deepinterp.internal.maeRegressionLayer);
+end;
 
-regressionnet = replaceLayer(importednet, placeholders.Name , ...
-	deepinterp.maeRegressionLayer);
-
-net = assembleNetwork(regressionnet);
+net = assembleNetwork(importednet);
 
