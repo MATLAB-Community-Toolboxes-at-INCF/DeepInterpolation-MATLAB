@@ -2,13 +2,13 @@ classdef Net
 
 	properties (SetAccess=protected)
 		network % Deep learning network
-        network_type % The type of network to create
+	        networkType % The type of network to create
 		N % number of rows of inputs to the network
 		M % number of columns of inputs to the network
 		Npre % Number of input frames needed before the predicted frame
 		Npost % Number of input frames needed after the predicted frame
-        Nomit % Number of omitted frames for the prediction
-        model_parameters % Parameters of the model, if applicable
+	        Nomit % Number of omitted frames for the prediction
+	        modelParameters % Parameters of the model, if applicable
 	end
 
 
@@ -23,70 +23,73 @@ classdef Net
 			%
 			% 'New'         : create a new network (under development)
 			% 'KerasFile'   : open and import a Keras file
-            % 'Pretrained'  : Open a pretrained model in DeepInterpolation
+			% 'Pretrained'  : Open a pretrained model in DeepInterpolation
 			%
 			% The function also accepts additional arguments as name/value pairs:
 			% --------------------------------------------------------------------
 			% | Parameter (default)     | Description                            |
 			% |-------------------------|----------------------------------------|
 			% | file ('')               | Filename to open if reading a file     |
-            % | type ('two-photon')     | Type of data the network operates on   |
-            % |                         |   options are 'two-photon', 'ephys',   |
-            % |                         |   'fMRI', 'other'.                     |
-            % | model ('TP-Ai93-450')   | When a pretrained model is requested,  |
-            % |                         |   use this named model. For a list of  |
-            % |                         |   available models, use                |
-            % |                         |   deepinterp.getPretrainedModels()     |
-            % | N (512)                 | N (first dimension of input)           |
-            % | M (512)                 | M (second dimension of input)          |
-            % | Nomit (1)               | Number of frames to omit in prediction |
-            % | Npre (30)               | Number of frames before the predicted  |
-            % |                         |    frame that are used to generate the |
-            % |                         |    prediction                          |
-            % | Npost (30)              | Number of frames after the predicted   |
-            % |                         |    frame that are used to generate the |
-            % |                         |    prediction                          |
+			% | type ('two-photon')     | Type of data the network operates on   |
+			% |                         |   options are 'two-photon', 'ephys',   |
+			% |                         |   'fMRI', 'other'.                     |
+			% | model ('TP-Ai93-450')   | When a pretrained model is requested,  |
+			% |                         |   use this named model. For a list of  |
+			% |                         |   available models, use                |
+			% |                         |   deepinterp.listPretrainedModels()    |
+			% | N (512)                 | N (first dimension of input)           |
+			% | M (512)                 | M (second dimension of input)          |
+			% | Nomit (1)               | Number of frames to omit in prediction |
+			% | Npre (30)               | Number of frames before the predicted  |
+			% |                         |    frame that are used to generate the |
+			% |                         |    prediction                          |
+			% | Npost (30)              | Number of frames after the predicted   |
+			% |                         |    frame that are used to generate the |
+			% |                         |    prediction                          |
  			% |-------------------------|----------------------------------------|
 			%
 			% Examples:
-            %   n1 = deepinterp.net('Pretrained','model','TP-Ai93-450');
+			%   n1 = deepinterp.net('Pretrained','model','TP-Ai93-450');
 			%   n2 = deepinterp.Net('KerasFile','file','myKerasFile.H5');
 			%
 				arguments
 					command (1,:) char {mustBeTextScalar}
 					options.file (1,:) char {mustBeFile}
-                    options.type (1,:) char {mustBeMember(options.type,{'two-photon','ephys','fMRI','other'})} = 'two-photon'
-                    options.model (1,:) char {mustBeTextScalar} = 'TP-Ai93-450'
+					options.type (1,:) char {mustBeMember(options.type,{'two-photon','ephys','fMRI','other'})} = 'two-photon'
+					options.model (1,:) char {mustBeTextScalar} = 'TP-Ai93-450'
 					options.N (1,1) double {mustBeInteger} = 512
 					options.M (1,1) double {mustBeInteger} = 512
 					options.Npre (1,1) double {mustBeInteger} = 30
 					options.Npost (1,1) double {mustBeInteger} = 30
-                    options.Nomit (1,1) double {mustBeInteger} = 1
-                end
+					options.Nomit (1,1) double {mustBeInteger} = 1
+					options.modelParameters (1,1) struct = struct('none',[])
+				end
 
-                network_type = options.type;
+				networkType = options.type;
 
 				switch (lower(command)),
 					case 'new',
 						% nothing to do yet
-                        error(['NEW option still under development.']);
+						error(['NEW option still under development.']);
 					case 'kerasfile',
 						obj.network=deepinterp.internal.importKerasMAE(options.file);
-                    case 'pretrained',
-                        [modelfilename, modelparams] = deepinterp.internal.getPretrainedModelFilename(options.model);
-                         obj = deepinterp.Net(modelparams.format,'file',modelfilename,...
-                             'N',modelparams.dim(1),'M',modelparams.dim(2),...
-                             'Npre',modelparams.pre,'Npost',modelparams.post,'Nomit',modelparams.omit,...
-                             'type',modelparams.type);
-                         return;
+					case 'pretrained',
+						[modelfilename, modelparams] = deepinterp.internal.getPretrainedModelFilename(options.model);
+						obj = deepinterp.Net(modelparams.format,'file',modelfilename,...
+							'N',modelparams.dim(1),'M',modelparams.dim(2),...
+							'Npre',modelparams.pre,'Npost',modelparams.post,'Nomit',modelparams.omit,...
+							'type',modelparams.type,...
+							'modelParameters',modelparams.parameters);
+						return;
 					otherwise,
 						error(['Unknown command: ' command]);
 				end;
 
-                obj.network_type = network_type;
-                obj.Npre = options.Npre;
-                obj.Npost = options.Npost;
-                obj.Nomit = options.Nomit;
+				obj.networkType = networkType;
+				obj.Npre = options.Npre;
+				obj.Npost = options.Npost;
+				obj.Nomit = options.Nomit;
+				obj.modelParameters = options.modelParameters;
 				obj = obj.SetInputSize();
 
 		end; % Net constructor
@@ -102,7 +105,7 @@ classdef Net
 			% Subclasses should describe the form of these inputs
 			% and outputs.
 			%
-                error('Training function in the object framework is not yet developed.');
+				error('Training function in the object framework is not yet developed.');
 		end; % train()
 
 		function output = interp(obj, input, options)
@@ -125,8 +128,8 @@ classdef Net
 				end
 
 				output = input;
-                Nomit_pre =  (obj.Nomit+1)/2;
-                Nomit_post = (obj.Nomit+1)/2;              
+				Nomit_pre =  (obj.Nomit+1)/2;
+				Nomit_post = (obj.Nomit+1)/2;              
 				offsets = [ fliplr(-[Nomit_pre:obj.Npre+Nomit_pre-1]) Nomit_post:obj.Npost+Nomit_post-1];
 				if options.progbar,
 					deepinterp.internal.progressbar();
@@ -167,9 +170,6 @@ classdef Net
 						'deepinterp.net.ImageTimeSeries.']);
 				end;
 		end; % SetInputSize
-
-
-
 	end;
 
 end % classdef

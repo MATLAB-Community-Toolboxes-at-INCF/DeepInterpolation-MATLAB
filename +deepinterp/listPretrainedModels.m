@@ -1,7 +1,7 @@
-function [modelNames,modelParams] = getPretrainedModels()
-% GETPRETRAINEDMODELS - return known, built-in pretrained models
+function [modelNames,modelParams] = listPretrainedModels()
+% LISTPRETRAINEDMODELS - return known, built-in pretrained models
 %
-% [MODELNAMES, MODELPARAMS] = GETPRETRAINEDMODELS()
+% [MODELNAMES, MODELPARAMS] = LISTPRETRAINEDMODELS()
 %
 % Return a list of known MODELNAMES and full parameter information
 % about these models in MODELPARAMS.

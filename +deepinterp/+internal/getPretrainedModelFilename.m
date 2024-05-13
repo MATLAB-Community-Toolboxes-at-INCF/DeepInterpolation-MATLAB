@@ -17,7 +17,7 @@ function [filename,parameters] = getPretrainedModelFilename(modelName)
 filename = [];
 parameters = [];
 
-[allModelNames,allModelParameters] = deepinterp.getPretrainedModels();
+[allModelNames,allModelParameters] = deepinterp.listPretrainedModels();
 
 if nargin<1,
 	filename = allModelNames;
