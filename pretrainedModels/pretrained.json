@@ -1,0 +1,67 @@
+[
+    {
+        "name":"TP-Ai93-450",
+        "filename":"2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5",
+        "url":"https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5",
+        "dim":[512,512],
+        "pre":30,
+        "post":30,
+        "omit":1,
+        "type":"two-photon",
+        "format": "KerasFile",
+        "parameters":
+        {
+            "framerate":30,
+            "objective_power":16,
+            "objective_NA":0.8,
+            "indicator":"GCaMP6f",
+            "strain":"Ai93",
+            "training_data":"https://github.com/AllenInstitute/deepinterpolation/blob/cfb42bc2c5bd8cc08ee870a163230e8c89c676ba/examples/paper_generation_code/json_data/2019-09-05-train-very-large-single-plane-Ai93-norm.json",
+            "description":"Pre-processing: Individual movies were motion corrected. Each movie recording was mean-centered and normalized with a single pair of value for all pixels",
+            "field_of_view_um":[400,400],
+            "excitation_wavelength":910,
+            "excitation_wavelength_nm":910
+        }
+    },
+    {
+        "name":"TP-Ai148",
+        "filename":"",
+        "url":"",
+        "dim":[512,512],
+        "pre":30,
+        "post":30,
+        "omit":1,
+        "type":"two-photon",
+        "format": "KerasFile",
+        "parameters":
+        {
+            "framerate":30,
+            "objective_power":16,
+            "objective_NA":0.8,
+            "indicator":"GCaMP6f",
+            "strain":"Ai148",
+            "training_data":"https://github.com/AllenInstitute/deepinterpolation/blob/cfb42bc2c5bd8cc08ee870a163230e8c89c676ba/examples/paper_generation_code/json_data/2019-09-05-train-very-large-single-plane-Ai148-norm.json",
+            "description":"Pre-processing: Individual movies were motion corrected. Each movie recording was mean-centered and normalized with a single pair of value for all pixels",
+            "field_of_view_um":[400,400],
+            "excitation_wavelength_nm":910
+        }
+    },
+    {
+        "name":"Ephys-Neuropixels_Phase_3a_1050",
+        "filename":"2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5",
+        "url":"https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/fMRI/2020_08_28_00_25_fmri_unet_denoiser_mean_absolute_error_2020_08_28_00_25_model.h5",
+        "dim":[192,2],
+        "pre":30,
+        "post":30,
+        "omit":3,
+        "type":"ephys",
+        "format": "KerasFile",
+        "parameters":
+        {
+            "samplerate":30000,
+            "electrode": "Neuropixels Phase 3a",
+            "training_data":"https://github.com/AllenInstitute/deepinterpolation/blob/cfb42bc2c5bd8cc08ee870a163230e8c89c676ba/examples/paper_generation_code/json_data/2019-09-05-train-very-large-single-plane-Ai148-norm.json",
+            "description":"Pre-processing: Median subtraction was applied to individual probes to remove signals that were common across all recording sites. Each probe recording was mean-centered and normalized with a single pair of value for all nodes on the probe."
+        }
+    }
+]
