@@ -29,3 +29,12 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+# OSX Desktop information
+.DS_Store
+
+# Python cache
+__pycache__
+
+# Unix editor files
+*.swp
