@@ -142,7 +142,7 @@ classdef Net
 					output(:,:,t) = predict(obj.network,input(:,:,offsets+t));
 				end;
 				if options.progbar,
-					progressbar(0.9999999999);
+					deepinterp.internal.progressbar(0.9999999999);
 				end;
 		end; % interp()
 
