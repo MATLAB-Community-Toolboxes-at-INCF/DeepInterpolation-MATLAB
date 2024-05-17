@@ -16,31 +16,35 @@ Get started with inference examples which apply the DeepInterpolation principle 
 |  --- | --- | --- | --- | --- |
 |⚡"Ephys" (electrophysiology<sup>1</sup>) | ["Ephys-Neuropixels_Phase_3a_1050"](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json)  | [sample data](sampleData/ephys_tiny_continuous.dat2) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ephys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_inference.mlx)
 |🔬"Ophys" (optical physiology<sup>2</sup>) | ["TP-Ai93-450"](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json)  (AWS, 120 MB) | [sample data](sampleData/ophys_tiny_761605196.tif)   | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ophys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_inference.mlx)
-|🧠 fMRI (functional magnetic resonance imaging) | [TODO](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json) (AWS, 407.55 KB)| [ds001246](https://openneuro.org/datasets/ds001246/versions/1.2.1) (OpenNeuro)| [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_fMRI_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_fMRI_inference.mlx)
 
-<sup>1</sup> via Neuropixels neural probes <sup>2</sup> via two-photon (2P) calcium imaging
+
+<sub><sup>1</sup> via Neuropixels neural probes <sup>2</sup> via two-photon (2P) calcium imaging<sub>
 
 First-time users on MATLAB Online will be prompted to install the [Deep Learning Toolbox Converter for TensorFlow Models](https://nl.mathworks.com/matlabcentral/fileexchange/64649-deep-learning-toolbox-converter-for-tensorflow-models) support package. Please follow the prompted link to complete the installation and re-run the example. See [Installation](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/edit/vijayiyer05-patch-1/README.md#installation) for further guidance to install DeepInterpolation with MATLAB on your local or cloud compute environment. 
 
-### Going Further
+## Going Further
 
-#### Training examples
-Try out training your own DeepInterpolation network. You can individually view (:eyes:) or run (:arrow_forward:) these examples on MATLAB Online:
+### Train DeepInterpolation models 
+Expected use cases involve training on a user's representative or actual dataset. The following examples illustrate the transfer learning workflow for (re)training DeepInterpolation pretrained models along with subsequent inference. Notably the DeepInterpolation principle **does not require separate ground truth data**; thus training and inference can be run using the same dataset. You can individually view (:eyes:) or run (:arrow_forward:) these examples on MATLAB Online:
 
-| Nickname  | Model |  Dataset | View | Run
+| Data Type  | Pretrained Model |  Sample Data | View | Run
 |---|---|---|---|---|
-| "Ephys" (electrophysiology) | [model](sample_data/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5) | [dataset](sample_data/ephys_tiny_continuous.dat2) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ephys_training.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_training.mlx)
-| "Ophys" (optical physiology) | [model](sample_data/2021_07_31_09_49_38_095550_unet_1024_search_mean_squared_error_pre_30_post_30_feat_32_power_1_depth_4_unet_True-0125-0.5732.h5) | [dataset](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_496908818.h5) (AWS, 55.6 GB) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Fophys_training_inference.mlx&embed=web) | (\*) |
+| 🔬"Ophys" (optical physiology<sup>1</sup>)| [TODO](sample_data/pretrainedNetwork.mat) | [sample data](sampleData/ophys_tiny_761605196.tif) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2Fbfd58de9-1242-48ba-81bc-dfe9c37fae6b%2Ffiles%2Fexamples%2Fcustomdatastore_example.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_training.mlx)
+| ⚡ Ephys" (electrophysiology<sup>2</sup>) | ["Ephys-Neuropixels_Phase_3a_1050"](pretrainedModels/pretrained.json) | [sample data](sampleData/ephys_tiny_continuous.dat2) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ephys_training.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_training.mlx)
+
+<sub><sup>1</sup> via two-photon (2P) calcium imaging <sup>2</sup> via Neuropixels neural probes<sub>
+
+
+
+### Work with Public Datasets
+Expected use cases will involve larger data sizes, for which remote data locations and/or big data handling become important considerations. The following examples utilize larger datasets from cloud-hosted public scientific data archives to illustrate these data acccess & handling workflows. You can individually view (:eyes:) or run (:arrow_forward:) these examples on MATLAB Online:
+
+| Data Type  | Pretrained Model |  Public Data Archive | View | Run
+|---|---|---|---|---|
+|🔬"Ophys" (optical physiology) | [model](pretrainedModels/pretrained.json) | [Allen Brain Observatory](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_496908818.h5) (55.6 GB) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Fophys_AllenBrainObservatory.mlx&embed=web) | (\*) |
+|🧠 fMRI (functional magnetic resonance imaging) | [TODO](pretrainedModels/pretrained.json) (AWS, 407.55 KB)| [Open Neuro](https://openneuro.org/datasets/ds001246/versions/1.2.1) (18.3 GB)| [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_fMRI_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/fMRI_OpenNeuro.mlx)
 
 <sub>(\*) This data-intensive example is recommended for use on a local machine, not for MATLAB online.</sub>
-
-#### Custom Datastore for DeepInterpolation
-For large datasets that are too large to load entirely into memory, the custom datastore offers a solution. By initializing the datastore with a dataset's path, users can sequentially access both flanking frames and their respective center frames. This allows for easy training and inference.
-
-For a detailed introduction and a practical workflow, see the customdatastore_example:
-| Nickname  | Model |  Dataset | View | Run
-|---|---|---|---|---|
-| "Custom datastore" Read from a custom datastore | [model](sample_data/pretrainedNetwork.mat) | [sample_data](sample_data/ophys_tiny_761605196.tif) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2Fbfd58de9-1242-48ba-81bc-dfe9c37fae6b%2Ffiles%2Fexamples%2Fcustomdatastore_example.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/customdatastore_example.mlx)
 
 ## Key Concepts
 
