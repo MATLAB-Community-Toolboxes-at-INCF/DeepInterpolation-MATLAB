@@ -25,7 +25,7 @@ First-time users on MATLAB Online will be prompted to install the [Deep Learning
 ## Going Further
 
 ### Train DeepInterpolation models 
-Expected use cases involve training on a user's representative or actual dataset. The following examples illustrate the transfer learning workflow for (re)training DeepInterpolation pretrained models along with subsequent inference. Notably the DeepInterpolation principle **does not require separate ground truth data**; thus training and inference can be run using the same dataset. You can individually view (:eyes:) or run (:arrow_forward:) these examples on MATLAB Online:
+Expected use cases involve training on a user's representative or actual dataset. The following examples illustrate the transfer learning workflow for (re)training DeepInterpolation pretrained models along with subsequent inference. Notably the DeepInterpolation principle **does not require separate ground truth data**; thus training and inference can be run using the same dataset. You can individually view (👀) or run (▶️) these examples on MATLAB Online:
 
 | Data Type  | Pretrained Model |  Sample Data | View | Run
 |---|---|---|---|---|
