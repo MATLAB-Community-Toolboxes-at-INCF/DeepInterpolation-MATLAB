@@ -1,11 +1,16 @@
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=gettingStarted.mlx)
 [![View Deep-Interpolation-MATLAB on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/134991-deepinterpolation-matlab)
+
 # DeepInterpolation with MATLAB
 A MATLAB implementation of the DeepInterpolation principle
-### About DeepInterpolation
-DeepInterpolation is a [published](https://pubmed.ncbi.nlm.nih.gov/34650233) general-purpose algorithm created by the [Allen Institute](https://alleninstitute.org/) for removing noise that arrives independently from data frame to data frame. 
 
-DeepInterpolation uses deep learning to predict a data frame from the contents of several preceeding and succeeding frames. The resulting prediction is free of independent noise such as shot noise (imaging) or thermal noise (electrophysiology). If the signal is well predicted by these preeceding and succeeding frames, as in 2-photon imaging and multi-channel recording, then DeepInterpolation does an excellent job of increasing signal-to-noise ratio. In systems neuroscience, this allows more cells to be characterized with better certainty about their activity. 
+## About DeepInterpolation
+DeepInterpolation is a [published](https://pubmed.ncbi.nlm.nih.gov/34650233) general-purpose algorithm created by the [Allen Institute](https://alleninstitute.org/) for removing noise that arrives independently from data frame to data frame. One known applicable domain is systems neuroscience, wherein neural activity measurement fidelity is commonly limited by independent noise sources (shot noise and/or thermal noise). 
+
+See [Key Concepts](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/edit/main/README.md#key-concepts) for further information. 
+
+## Getting Started
+
 
 ### Getting started
 Get started with inference examples using smaller datasets. You can individually view :eyes: or run :arrow_forward: each on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html):
@@ -43,23 +48,25 @@ For a detailed introduction and a practical workflow, see the customdatastore_ex
 |---|---|---|---|---|
 | "Custom datastore" Read from a custom datastore | [model](sample_data/pretrainedNetwork.mat) | [sample_data](sample_data/ophys_tiny_761605196.tif) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2Fbfd58de9-1242-48ba-81bc-dfe9c37fae6b%2Ffiles%2Fexamples%2Fcustomdatastore_example.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/customdatastore_example.mlx)
 
-### Support
-DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of [adding issues](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/issues) or submitting pull requests.
+## Key Concepts
 
-### Illustration
+DeepInterpolation uses deep learning to predict a data frame from the contents of several preceeding and succeeding frames. The resulting prediction is free of independent noise such as shot noise (imaging) or thermal noise (electrophysiology). If the signal is well predicted by these preeceding and succeeding frames, as in 2-photon imaging and multi-channel recording, then DeepInterpolation does an excellent job of increasing signal-to-noise ratio. In systems neuroscience, this allows more cells to be characterized with better certainty about their activity. 
 
+<!--
 The principle behind DeepInterpolation is illustrated in the following figure from [Lecoq et al. 2021]((https://pubmed.ncbi.nlm.nih.gov/34650233)) in _Nature Methods_. 
 
 ![Figure 1a from Lecoq et al. 2021](sampleData/Lecoq_et_al_2021_Fig1a.png). 
+--> 
 
 To predict the frame-of-interest ("predicted frame"), a deep learning network uses data from several preceeding and succeeding video frames. During training, the network is modified so that it produces better and better representations of the predicted frames over several datasets. During inference, the network produces predicted frames that are used in place of the original data. If the signal in the data is well predicted by the information in the preceeding and succeeding frames, then the inferred data contains a reconstruction of the original data where the usual noise that occurs independently on each frame is greatly reduced, because it is not predicted on average. The signal can be inferred with high quality in part because the network can average out the independent noise in the preceeding and succeeding frames to uncover the underlying signal just prior to and just after the signal in the predicted frame. 
 
-### Uses other open source resources
+## About DeepInterpolation with MATLAB 
+DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of [adding issues](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/issues) or submitting pull requests.
 
+### Uses other open source resources
 We use [progressbar](https://www.mathworks.com/matlabcentral/fileexchange/6922-progressbar) and mimic some functions from [Brain Observatory Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/90900-brain-observatory-toolbox).
 
 ### Other implementations of DeepInterpolation
-
 - [Python](https://github.com/AllenInstitute/deepinterpolation)
 
 
