@@ -10,23 +10,17 @@ DeepInterpolation is a [published](https://pubmed.ncbi.nlm.nih.gov/34650233) gen
 See [Key Concepts](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/edit/main/README.md#key-concepts) for further information. 
 
 ## Getting Started
+Get started with inference examples which apply the DeepInterpolation principle to sample data using applicable pretrained models (i.e., trained with the same data type). You can individually view :eyes: or run :arrow_forward: each on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html):
 
+| Data Type | Pretrained Model|  Sample data  | View | Run
+|  --- | --- | --- | --- | --- |
+|⚡"Ephys" (electrophysiology<sup>1</sup>) | ["Ephys-Neuropixels_Phase_3a_1050"](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json)  | [sample data](sampleData/ephys_tiny_continuous.dat2) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ephys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_inference.mlx)
+|🔬"Ophys" (optical physiology<sup>2</sup>) | ["TP-Ai93-450"](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json)  (AWS, 120 MB) | [sample data](sampleData/ophys_tiny_761605196.tif)   | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ophys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_inference.mlx)
+|🧠 fMRI (functional magnetic resonance imaging) | [TODO](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json) (AWS, 407.55 KB)| [ds001246](https://openneuro.org/datasets/ds001246/versions/1.2.1) (OpenNeuro)| [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_fMRI_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_fMRI_inference.mlx)
 
-### Getting started
-Get started with inference examples using smaller datasets. You can individually view :eyes: or run :arrow_forward: each on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html):
+<sup>1</sup> via Neuropixels neural probes <sup>2</sup> via two-photon (2P) calcium imaging
 
-| | Inference Example | Trained Model|  Sample data  | View | Run
-| ---  | --- | --- | --- | --- | --- |
-|⚡|"Ephys" (electrophysiology<sup>1</sup>) | [model](sample_data/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.h5)  | [sample data](sample_data/ephys_tiny_continuous.dat2) | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ephys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ephys_inference.mlx)
-|🔬|"Ophys" (optical physiology<sup>2</sup>) object demo| [model](https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5)  (AWS, 120 MB) | [sample data](sample_data/ophys_tiny_761605196.tif)   | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ophys_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_inference.mlx)
-|🔬|"Ophys" (optical physiology<sup>2</sup>) detailed demo| [model](https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.h5)  (AWS, 120 MB) | [sample data](sample_data/ophys_tiny_761605196.tif)   | [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ophys_inference_detailed.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_inference_detailed.mlx)
-|🧠| fMRI (functional magnetic resonance imaging) | [model](https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/fMRI/2020_08_28_00_25_fmri_unet_denoiser_mean_absolute_error_2020_08_28_00_25_model.h5) (AWS, 407.55 KB)| [sample_data](https://openneuro.org/crn/datasets/ds001246/snapshots/1.2.1/files/sub-01:ses-perceptionTest01:func:sub-01_ses-perceptionTest01_task-perception_run-01_bold.nii.gz) (OpenNeuro)| [:eyes:](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_fMRI_inference.mlx&embed=web) | [:arrow_forward:](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_fMRI_inference.mlx)
-
-<sup>1</sup> via Neuropixels neural probes
-<sup>2</sup> via two-photon (2P) calcium imaging
-
-#### Requirements
-* [Deep Learning Toolbox Converter for TensorFlow Models](https://nl.mathworks.com/matlabcentral/fileexchange/64649-deep-learning-toolbox-converter-for-tensorflow-models) support package.
+First-time users on MATLAB Online will be prompted to install the [Deep Learning Toolbox Converter for TensorFlow Models](https://nl.mathworks.com/matlabcentral/fileexchange/64649-deep-learning-toolbox-converter-for-tensorflow-models) support package. Please follow the prompted link to complete the installation and re-run the example. See [Installation](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/edit/vijayiyer05-patch-1/README.md#installation) for further guidance to install DeepInterpolation with MATLAB on your local or cloud compute environment. 
 
 ### Going Further
 
@@ -60,13 +54,16 @@ The principle behind DeepInterpolation is illustrated in the following figure fr
 
 To predict the frame-of-interest ("predicted frame"), a deep learning network uses data from several preceeding and succeeding video frames. During training, the network is modified so that it produces better and better representations of the predicted frames over several datasets. During inference, the network produces predicted frames that are used in place of the original data. If the signal in the data is well predicted by the information in the preceeding and succeeding frames, then the inferred data contains a reconstruction of the original data where the usual noise that occurs independently on each frame is greatly reduced, because it is not predicted on average. The signal can be inferred with high quality in part because the network can average out the independent noise in the preceeding and succeeding frames to uncover the underlying signal just prior to and just after the signal in the predicted frame. 
 
-## About DeepInterpolation with MATLAB 
+### Installation
+🚧
+
+### About DeepInterpolation with MATLAB 
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of [adding issues](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/issues) or submitting pull requests.
 
-### Uses other open source resources
+#### Uses other open source resources
 We use [progressbar](https://www.mathworks.com/matlabcentral/fileexchange/6922-progressbar) and mimic some functions from [Brain Observatory Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/90900-brain-observatory-toolbox).
 
-### Other implementations of DeepInterpolation
+#### Other implementations of DeepInterpolation
 - [Python](https://github.com/AllenInstitute/deepinterpolation)
 
 
