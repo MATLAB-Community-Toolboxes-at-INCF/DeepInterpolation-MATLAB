@@ -36,7 +36,7 @@ classdef Datastore < matlab.io.Datastore & ...
     end
 
     methods % begin methods section
-        function myds = DeepInterpolationDataStore(filePath, options)
+        function myds = Datastore(filePath, options)
             arguments
                 filePath
                 options = struct();
