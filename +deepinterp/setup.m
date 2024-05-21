@@ -12,5 +12,5 @@ addpath(tbd);
 addpath(fullfile(tbd, "sampleData"))
 addpath(fullfile(tbd, "pretrainedModels"))
 addpath(fullfile(tbd, "examples"))
-addpath(fullfile(tbd, "datastore"))
+
 
