@@ -1,12 +1,12 @@
-classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
+classdef Datastore < matlab.io.Datastore & ...
                                       matlab.io.datastore.Subsettable & ...
                                       matlab.io.datastore.Shuffleable
-    %DEEPINTERPOLATIONDATASTORE - custom datastore for DeepInterpolation-MATLAB
+    % DATASTORE - custom datastore for DeepInterpolation-MATLAB
     %
     % This custom datastore provides flanking frames and the center frame 
     % upon one read.
     %
-    % dids = DeepInterpolationDataStore(pathToTiffFile, options);
+    % dids = deepinterp.Datastore(pathToTiffFile, options);
     %
     % Input must be full path to a grayscale, single channel tiff stack of 
     % >'flankingFrames + 2' frames in order to work (this is according to
@@ -36,7 +36,7 @@ classdef DeepInterpolationDataStore < matlab.io.Datastore & ...
     end
 
     methods % begin methods section
-        function myds = DeepInterpolationDataStore(filePath, options)
+        function myds = Datastore(filePath, options)
             arguments
                 filePath
                 options = struct();
