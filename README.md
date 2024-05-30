@@ -63,7 +63,10 @@ During training, the network is modified so that it produces better and better r
 DeepInterpolation works well in situations where the signal in the data is well predicted by the information in the preceeding and succeeding frames. In these cases, the inferred data contains a good reconstruction of the underlying signal while the noise that occurs independently on each frame is greatly reduced, because the noise is not predicted on average.
 
 ### Installation
-🚧
+To install the DeepInterpolation-MATLAB persistently on a local machine or cloud instance, the [**Add-on Explorer**](https://www.mathworks.com/products/matlab/add-on-explorer.html) is recommended: 
+1. Launch the Add-on Explorer ![image](sampleData/188336991-77ba49f1-d70d-4111-a265-3f9ba284bb8d.png)
+2. Search for "DeepInterpolation"
+3. Press the "Add" button.
 
 ### About DeepInterpolation with MATLAB 
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of [adding issues](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/issues) or submitting pull requests.
