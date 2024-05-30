@@ -48,7 +48,9 @@ Expected use cases will involve larger data sizes, for which remote data locatio
 
 ## Key Concepts
 
-DeepInterpolation uses deep learning to predict a data frame from the contents of several preceeding and succeeding frames. The resulting prediction is free of independent noise such as shot noise (imaging) or thermal noise (electrophysiology). If the signal is well predicted by these preeceding and succeeding frames, as in 2-photon imaging and multi-channel recording, then DeepInterpolation does an excellent job of increasing signal-to-noise ratio. In systems neuroscience, this allows more cells to be characterized with better certainty about their activity. 
+DeepInterpolation uses deep learning to predict a data frame from the contents of several preceeding and succeeding frames. The resulting prediction is free of independent noise such as shot noise (imaging) or thermal noise (electrophysiology). 
+
+If the signal is well predicted by these preeceding and succeeding frames, as in 2-photon imaging and multi-channel recording, then DeepInterpolation does an excellent job of increasing signal-to-noise ratio. In systems neuroscience, this allows more cells to be characterized with better certainty about their activity. 
 
 <!--
 The principle behind DeepInterpolation is illustrated in the following figure from [Lecoq et al. 2021]((https://pubmed.ncbi.nlm.nih.gov/34650233)) in _Nature Methods_. 
@@ -56,7 +58,9 @@ The principle behind DeepInterpolation is illustrated in the following figure fr
 ![Figure 1a from Lecoq et al. 2021](sampleData/Lecoq_et_al_2021_Fig1a.png). 
 --> 
 
-To predict the frame-of-interest ("predicted frame"), a deep learning network uses data from several preceeding and succeeding video frames. During training, the network is modified so that it produces better and better representations of the predicted frames over several datasets. During inference, the network produces predicted frames that are used in place of the original data. DeepInterpolation works well in situations where the signal in the data is well predicted by the information in the preceeding and succeeding frames. In these cases, the inferred data contains a good reconstruction of the underlying signal while the noise that occurs independently on each frame is greatly reduced, because the noise is not predicted on average.
+During training, the network is modified so that it produces better and better representations of the predicted frames over several datasets. During inference, the network produces predicted frames that are used in place of the original data. 
+
+DeepInterpolation works well in situations where the signal in the data is well predicted by the information in the preceeding and succeeding frames. In these cases, the inferred data contains a good reconstruction of the underlying signal while the noise that occurs independently on each frame is greatly reduced, because the noise is not predicted on average.
 
 ### Installation
 🚧
