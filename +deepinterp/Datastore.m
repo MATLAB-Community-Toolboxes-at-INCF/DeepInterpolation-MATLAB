@@ -109,6 +109,8 @@ classdef Datastore < matlab.io.Datastore & ...
         end
 
         function [data,info] = read(myds)
+            % Vijay's brilliant change
+        
             % Read data and information about the extracted data.
             assert(hasdata(myds), "No more data to read");
             refFrame = getSingleFrame(myds, myds.currentFrameIndex);
