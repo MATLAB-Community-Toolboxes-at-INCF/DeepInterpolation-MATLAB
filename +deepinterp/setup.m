@@ -11,6 +11,7 @@ tbd = deepinterp.toolboxpath();
 addpath(tbd);
 addpath(fullfile(tbd, "sampleData"))
 addpath(fullfile(tbd, "pretrainedModels"))
+addpath(fullfile(tbd, "pretrainedModels","TensorFlowNetworks"))
 addpath(fullfile(tbd, "examples"))
 
 

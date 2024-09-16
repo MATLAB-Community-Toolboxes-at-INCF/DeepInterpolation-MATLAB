@@ -21,9 +21,10 @@ classdef Net
 			% Create a new deepinterp.Net object according to instructions.
 			% COMMAND can be any of the following:
 			%
-			% 'New'         : create a new network (under development)
-			% 'KerasFile'   : open and import a Keras file
-			% 'Pretrained'  : Open a pretrained model in DeepInterpolation
+			% 'New'            : create a new network (under development)
+			% 'KerasFile'      : open and import a Keras file
+			% 'TensorFlowZip'  : open a TensorFlow zip file
+			% 'Pretrained'     : Open a pretrained model in DeepInterpolation
 			%
 			% The function also accepts additional arguments as name/value pairs:
 			% --------------------------------------------------------------------
@@ -49,8 +50,9 @@ classdef Net
  			% |-------------------------|----------------------------------------|
 			%
 			% Examples:
-			%   n1 = deepinterp.net('Pretrained','model','TP-Ai93-450');
+			%   n1 = deepinterp.Net('Pretrained','model','TP-Ai93-450');
 			%   n2 = deepinterp.Net('KerasFile','file','myKerasFile.H5');
+			%   n3 = deepinterp.Net('TensorFlowZip','file','myTFFile.zip','model','ModelABC');
 			%
 				arguments
 					command (1,:) char {mustBeTextScalar}
@@ -73,6 +75,8 @@ classdef Net
 						error(['NEW option still under development.']);
 					case 'kerasfile',
 						obj.network=deepinterp.internal.importKerasMAE(options.file);
+					case 'tensorflowzip',
+						obj.network=deepinterp.internal.openTensorFlowNetwork(options.file,matlab.lang.makeValidName(options.model));
 					case 'pretrained',
 						[modelfilename, modelparams] = deepinterp.internal.getPretrainedModelFilename(options.model);
 						obj = deepinterp.Net(modelparams.format,'file',modelfilename,...
