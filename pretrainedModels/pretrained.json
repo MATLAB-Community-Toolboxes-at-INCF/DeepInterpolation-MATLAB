@@ -1,7 +1,7 @@
 [
     {
         "name":"TP-Ai93-450",
-        "filename":"",
+        "filename":"TensorFlowNetworks/TF_2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.zip",
         "url":"https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/TF_2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai93-0450.zip",
         "dim":[512,512],
         "pre":30,
@@ -26,7 +26,7 @@
     },
     {
         "name":"TP-Ai148",
-        "filename":"",
+        "filename":"TensorFlowNetworks/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai148-0450.zip",
         "url":"https://wds-matlab-community-toolboxes.s3.amazonaws.com/DeepInterpolation-MATLAB/Trained_models/ophys/2019_09_11_23_32_unet_single_1024_mean_absolute_error_Ai148-0450.zip",
         "dim":[512,512],
         "pre":30,
