@@ -5,7 +5,7 @@
 A MATLAB implementation of the DeepInterpolation principle
 
 ## About DeepInterpolation
-DeepInterpolation is a [published](https://pubmed.ncbi.nlm.nih.gov/34650233) general-purpose algorithm created by the [Allen Institute](https://alleninstitute.org/) for removing noise that arrives independently from data frame to data frame. One known applicable domain is systems neuroscience, wherein neural activity measurement fidelity is commonly limited by independent noise sources (shot noise and/or thermal noise). The code is distributed under a [BSD license from the Allen Institute](LICENSE).
+DeepInterpolation is a [published](https://pubmed.ncbi.nlm.nih.gov/34650233) general-purpose algorithm created by the [Allen Institute](https://alleninstitute.org/) for removing noise that arrives independently from data frame to data frame. One known applicable domain is systems neuroscience, wherein neural activity measurement fidelity is commonly limited by independent noise sources (shot noise and/or thermal noise). 
 
 See [Key Concepts](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/edit/main/README.md#key-concepts) for further information. 
 
