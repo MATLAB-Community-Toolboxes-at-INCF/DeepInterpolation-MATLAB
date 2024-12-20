@@ -9,6 +9,7 @@
         "omit":1,
         "type":"two-photon",
         "format": "TensorFlowZip",
+        "variable": "none",        
         "license": "https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/LICENSE",
         "parameters":
         {
@@ -16,7 +17,7 @@
             "objective_power":16,
             "objective_NA":0.8,
             "indicator":"GCaMP6f",
-            "strain":"Ai93",
+            "strain":"Ai93 (https://pmc.ncbi.nlm.nih.gov/articles/PMC6086366)",
             "training_data":"https://github.com/AllenInstitute/deepinterpolation/blob/cfb42bc2c5bd8cc08ee870a163230e8c89c676ba/examples/paper_generation_code/json_data/2019-09-05-train-very-large-single-plane-Ai93-norm.json",
             "description":"Pre-processing: Individual movies were motion corrected. Each movie recording was mean-centered and normalized with a single pair of value for all pixels",
             "field_of_view_um":[400,400],
@@ -34,6 +35,7 @@
         "omit":1,
         "type":"two-photon",
         "format": "TensorFlowZip",
+        "variable": "none",        
         "license": "https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/LICENSE",
         "parameters":
         {
@@ -41,9 +43,9 @@
             "objective_power":16,
             "objective_NA":0.8,
             "indicator":"GCaMP6f",
-            "strain":"Ai148",
+            "strain":"Ai148 (https://pmc.ncbi.nlm.nih.gov/articles/PMC6086366)",
             "training_data":"https://github.com/AllenInstitute/deepinterpolation/blob/cfb42bc2c5bd8cc08ee870a163230e8c89c676ba/examples/paper_generation_code/json_data/2019-09-05-train-very-large-single-plane-Ai148-norm.json",
-            "description":"Pre-processing: Individual movies were motion corrected. Each movie recording was mean-centered and normalized with a single pair of value for all pixels",
+            "description":"Pre-processing: Individual movies were motion corrected. Each movie recording was mean-centered and normalized with a single pair of value for all pixels. Trained on data from mouse strain Ai148.",
             "field_of_view_um":[400,400],
             "excitation_wavelength_nm":910
         }
@@ -52,19 +54,38 @@
         "name":"Ephys-Neuropixels_Phase_3a_1050",
         "filename":"TensorFlowNetworks/2020_02_29_15_28_unet_single_ephys_1024_mean_squared_error-1050.zip",
         "url":"",
-        "dim":[192,2],
+        "dim":[384,2],
         "pre":30,
         "post":30,
         "omit":3,
         "type":"ephys",
         "format": "TensorFlowZip",
+        "variable": "none",        
         "license": "https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/LICENSE",
         "parameters":
         {
             "samplerate":30000,
             "electrode": "Neuropixels Phase 3a",
             "training_data":"(unknown)",
-            "description":"Pre-processing: Median subtraction was applied to individual probes to remove signals that were common across all recording sites. Each probe recording was mean-centered and normalized with a single pair of value for all nodes on the probe."
+            "description":"Pre-processing: Median subtraction was applied to individual probes to remove signals that were common across all recording sites. Each probe recording was mean-centered and normalized with a single pair of value for all nodes on the probe. The network was trained on data that were transformed to match the geometry of the Phase 3a probe and need to passed through deepinterp.NPframe2checkerboard() before inference can be performed."
+        }
+    },
+    {
+        "name": "fMRI-DeepInterpolation_3mm",
+        "filename": "fmri_pretrained_matlab_compatible.mat",
+        "url":"",
+        "dim":[7,7,7],
+        "pre": 2,
+        "post": 2,
+        "omit": 1,
+        "type": "fMRI",
+        "format": "Matlab",
+        "variable": "net",
+        "license": "https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/LICENSE",
+        "parameters":
+        {
+             "description": "TR, 3000 ms; TE, 30 ms; flip angle, 80°; voxel size, 3 × 3 × 3 mm; FOV, 192 × 192 mm; number of slices, 50, slice gap, 0 mm",
+             "training_data": "(unknown)"
         }
     }
 ]
