@@ -1,9 +1,11 @@
-function setup()
+function tbd = setup()
 % SETUP - add DeepInterpolation Toolbox folders to the MATLAB path
 %
-% SETUP()
+% TBD = SETUP()
 %
 % Adds DeepInterpolation Toolobx folders to the MATLAB path.
+%
+% Returns the toolbox directory TBD.
 %
 
 tbd = deepinterp.toolboxpath();
