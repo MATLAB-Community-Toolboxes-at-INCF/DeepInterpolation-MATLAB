@@ -87,5 +87,23 @@
              "description": "TR, 3000 ms; TE, 30 ms; flip angle, 80°; voxel size, 3 × 3 × 3 mm; FOV, 192 × 192 mm; number of slices, 50, slice gap, 0 mm",
              "training_data": "(unknown)"
         }
+    },
+    {
+        "name": "Allen_Training_And_Inference",
+        "filename": "2021_07_31_09_49_38_095550_unet_1024_search_mean_squared_error_pre_30_post_30_feat_32_power_1_depth_4_unet_True-0125-0.5732.h5",
+        "url":"",
+        "dim":[512,512],
+        "pre": 30,
+        "post": 30,
+        "omit": 1,
+        "type": "two-photon",
+        "format": "KerasFile",
+        "variable": "none",
+        "license": "https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/LICENSE",
+        "parameters":
+        {
+             "description": "(unknown)",
+             "training_data": "(unknown)"
+        }
     }
 ]
