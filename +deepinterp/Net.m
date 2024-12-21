@@ -65,6 +65,7 @@ classdef Net
 					options.Npost (1,1) double {mustBeInteger} = 30
 					options.Nomit (1,1) double {mustBeInteger} = 1
 					options.modelParameters (1,1) struct = struct('none',[])
+                    options.varname (1,:) char = "net"
 				end
 
 				networkType = options.type;
@@ -77,13 +78,17 @@ classdef Net
 						obj.network=deepinterp.internal.importKerasMAE(options.file);
 					case 'tensorflowzip',
 						obj.network=deepinterp.internal.openTensorFlowNetwork(options.file,matlab.lang.makeValidName(options.model));
+                    case 'matlab',
+                        matdata = load(options.file);
+                        obj.network = getfield(matdata,options.varname);
 					case 'pretrained',
 						[modelfilename, modelparams] = deepinterp.internal.getPretrainedModelFilename(options.model);
 						obj = deepinterp.Net(modelparams.format,'file',modelfilename,...
 							'N',modelparams.dim(1),'M',modelparams.dim(2),...
 							'Npre',modelparams.pre,'Npost',modelparams.post,'Nomit',modelparams.omit,...
 							'type',modelparams.type,...
-							'modelParameters',modelparams.parameters);
+							'modelParameters',modelparams.parameters,'model',options.model,...
+                            "varname",options.varname);
 						return;
 					otherwise,
 						error(['Unknown command: ' command]);
@@ -131,6 +136,10 @@ classdef Net
 					options.progbar (1,1) logical = true;
 				end
 
+                if obj.networkType=="fMRI",
+                    error(['fMRI not yet supported by deepinterp.Net class.']);
+                end;
+
 				output = input;
 				Nomit_pre =  (obj.Nomit+1)/2;
 				Nomit_post = (obj.Nomit+1)/2;              
@@ -138,15 +147,15 @@ classdef Net
 				if options.progbar,
 					deepinterp.internal.progressbar();
 				end;
-				totalWork = size(input,3)-(obj.Npost+obj.Npre);
-				for t = obj.Npre+1 : size(input,3) - obj.Npost,
+				totalWork = size(input,3)-(obj.Npost+obj.Npre+Nomit_pre-1+Nomit_post-1);
+				for t = obj.Npre+1+Nomit_pre-1 : size(input,3) - obj.Npost-Nomit_post+1,
 					if options.progbar,
 						deepinterp.internal.progressbar((t-(obj.Npre+1))/totalWork);
 					end;
 					output(:,:,t) = predict(obj.network,input(:,:,offsets+t));
 				end;
 				if options.progbar,
-					deepinterp.internal.progressbar(0.9999999999);
+					deepinterp.internal.progressbar(1);
 				end;
 		end; % interp()
 
@@ -168,10 +177,12 @@ classdef Net
 					inSz = obj.network.Layers(1).InputSize;
 					obj.N = inSz(1);
 					obj.M = inSz(2);
-					assert(inSz(3)==obj.Npre+obj.Npost,...
-						['Npre + Npost must add up to the total ' ...
-						'number of image inputs to ' ...
-						'deepinterp.net.ImageTimeSeries.']);
+                    if numel(inSz)<4,
+					    assert(inSz(end)==obj.Npre+obj.Npost,...
+						    ['Npre + Npost must add up to the total ' ...
+						    'number of image inputs to ' ...
+						    'deepinterp.net.ImageTimeSeries.']);
+                    end;
 				end;
 		end; % SetInputSize
 	end;
