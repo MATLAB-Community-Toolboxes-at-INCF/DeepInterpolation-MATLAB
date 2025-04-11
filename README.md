@@ -67,9 +67,9 @@ During training, the network is modified so that it produces better and better r
 
 DeepInterpolation works well in situations where the signal in the data is well predicted by the information in the preceeding and succeeding frames. In these cases, the inferred data contains a good reconstruction of the underlying signal while the noise that occurs independently on each frame is greatly reduced, because the noise is not predicted on average.
 
-### Importing PyTorch deep learning models to Matlab
+### Breakdown of DeepInterpolation TensorFlow model import
 
-The following example shows how to import a PyTorch deep network into the Matlab Deep Learning Toolbox
+The following version of the Getting Started "ophys" example above goes 'under the hood' to show the step where the TensorFlow model from the DeepInterpolation [reference repository](https://github.com/AllenInstitute/deepinterpolation) is imported into MATLAB's [Deep Learning Toolbox](https://www.mathworks.com/products/deep-learning.html).
 
 | Data Type | Pretrained<br />Model|  Sample<br />Data  | View <br />:eyes: | Run <br /> ▶️
 |  :--- | :---: | :---: | --- | --- | 
