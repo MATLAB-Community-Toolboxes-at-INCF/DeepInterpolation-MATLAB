@@ -42,9 +42,14 @@ Expected use cases will involve larger data sizes, for which remote data locatio
 | Data Type  | Pretrained Model |  Public Data Archive | View :eyes: | Run ▶️
 |---|:---:|---|---|---|
 |🔬"Ophys" (optical physiology) | [:robot:](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json#L92) | [Allen Brain Observatory](http://allen-brain-observatory.s3.amazonaws.com/visual-coding-2p/ophys_movies/ophys_experiment_496908818.h5) (55.6 GB) | [![View Deep-Interpolation-MATLAB on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Fophys_AllenBrainObservatory.mlx&embed=web) | (\*) |
-|🧠 fMRI (functional magnetic resonance imaging) | [:robot:](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json#L74) | [Open Neuro](https://openneuro.org/datasets/ds001246/versions/1.2.1) (18.3 GB)| [![View Deep-Interpolation-MATLAB on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_fMRI_inference.mlx&embed=web) | [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/other/fMRI_OpenNeuro.mlx)
 
 <sub>(\*) This data-intensive example is recommended for use on a local machine, not for MATLAB online.</sub>
+
+## Installation
+To install the DeepInterpolation-MATLAB persistently on a local machine or cloud instance, the [**Add-on Explorer**](https://www.mathworks.com/products/matlab/add-on-explorer.html) is recommended: 
+1. Launch the Add-on Explorer ![image](sampleData/188336991-77ba49f1-d70d-4111-a265-3f9ba284bb8d.png)
+2. Search for "DeepInterpolation"
+3. Press the "Add" button.
 
 ## Key Concepts
 
@@ -62,11 +67,13 @@ During training, the network is modified so that it produces better and better r
 
 DeepInterpolation works well in situations where the signal in the data is well predicted by the information in the preceeding and succeeding frames. In these cases, the inferred data contains a good reconstruction of the underlying signal while the noise that occurs independently on each frame is greatly reduced, because the noise is not predicted on average.
 
-### Installation
-To install the DeepInterpolation-MATLAB persistently on a local machine or cloud instance, the [**Add-on Explorer**](https://www.mathworks.com/products/matlab/add-on-explorer.html) is recommended: 
-1. Launch the Add-on Explorer ![image](sampleData/188336991-77ba49f1-d70d-4111-a265-3f9ba284bb8d.png)
-2. Search for "DeepInterpolation"
-3. Press the "Add" button.
+### Importing PyTorch deep learning models to Matlab
+
+The following example shows how to import a PyTorch deep network into the Matlab Deep Learning Toolbox
+
+| Data Type | Pretrained<br />Model|  Sample<br />Data  | View <br />:eyes: | Run <br /> ▶️
+|  :--- | :---: | :---: | --- | --- | 
+|🔬"Ophys"<br /> (optical physiology<sup>2</sup>)| [🤖](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/blob/main/pretrainedModels/pretrained.json#L3)<br /> (AWS, 120 MB) | [💾](sampleData/ophys_tiny_761605196.tif)   | [![View Deep-Interpolation-MATLAB on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://viewer.mathworks.com/?viewer=live_code&url=https%3A%2F%2Fwww.mathworks.com%2Fmatlabcentral%2Fmlc-downloads%2Fdownloads%2F84c22101-bffc-435a-910c-b0c7dcd5b386%2F29e7e92d-4639-4178-8e19-739580981e60%2Ffiles%2Fexamples%2Ftiny_ophys_inference.mlx&embed=web) | [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=INCF/DeepInterpolation-MATLAB&file=examples/tiny_ophys_inference_detailed.mlx)
 
 ### About DeepInterpolation with MATLAB 
 DeepInterpolation with MATLAB is a public repository. Contributions can be made in the form of [adding issues](https://github.com/MATLAB-Community-Toolboxes-at-INCF/DeepInterpolation-MATLAB/issues) or submitting pull requests.
